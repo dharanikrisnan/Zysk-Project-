@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "PlainTextForNow"
+    },
+    {
+      "id": "7f76",
+      "name": "Dharani",
+      "email": "dharani@gmail.com",
+      "password": "Sai@1234",
+      "confirmPassword": "Sai@1234"
+    },
+    {
+      "id": "1357",
+      "name": "Sairam ",
+      "email": "saai@gmail.com",
+      "password": "Sai@1234",
+      "confirmPassword": "Sai@1234"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "title": "Web Development",
+      "description": "Learn React, Node.js, and Next.js",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Data Science",
+      "description": "Master Python, Pandas, and Machine Learning",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "3",
+      "title": "UI/UX Design",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "4",
+      "title": "React Native",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "5",
+      "title": ".Net ",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "6",
+      "title": "Angular",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "7",
+      "title": "MySQL",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "8",
+      "title": "MongoDB",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "9",
+      "title": "PHP",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "10",
+      "title": "Gen AI",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "11",
+      "title": "MERN Stack",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "13",
+      "title": "MEAN Stack",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "14",
+      "title": "Communication Developement",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    },
+    {
+      "id": "15",
+      "title": "Mobile App Developement - Full Course",
+      "description": "Design systems and modern layouts with Figma",
+      "author": "James Bond",
+      "image": "/reactnative.jpg"
+    }
+  ]
+}
