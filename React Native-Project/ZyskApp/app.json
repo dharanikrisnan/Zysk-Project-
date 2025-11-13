@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "ZyskApp",
+    "slug": "ZyskApp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/zysk.png",
+    "scheme": "zyskapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+
+    "splash": {
+      "image": "./assets/images/zysk.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#FF5733"
+    },
+
+    "ios": {
+      "supportsTablet": true
+    },
+
+    "android": {
+      "splash": {
+        "image": "./assets/images/zysk.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#FF5733"
+      },
+      "edgeToEdgeEnabled": false,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.ZyskApp"
+    },
+
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/zysk.png"
+    },
+
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/zysk.png",
+          "resizeMode": "cover",
+          "backgroundColor": "#FF5733"
+        }
+      ]
+    ],
+
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

@@ -1,0 +1,28 @@
+we need to use the layout which is outside the app is used for routing and applying all the page desgin 
+inside the layout app/tabs/layout is applied only for those pages 
+
+in tabbar style -- > uses for the container design 
+tabbaritem style --> inside the padding height 
+tabbar label style --> text , logo images 
+
+to use the gradient color we need to download this npx expo install expo-linear-gradient 
+
+if you are using the query then you need to wrap that by using the usequery and the client 
+For shadow in android we use the elevation , in ios use shadow*
+
+In the interface , if we are mentioning the image , we can import this import { ImageSourcePropType } from 'react-native'; that supports both the require and uri 
+
+showsHorizontalScrollIndicator={false} ---> this will hide , the scroll bar 
+FlatList --> only mounts what's visible, memory low and scrolling smooth
+
+renderitem in FlatList ({item,index,separators}) -->function 
+
+
+The asysc storage and the async storage is the that stores the value locally in the storage in the key value pair where the value must be in the string . always need to use this in try and catch
+the presistance is the thing , if the user logouts , and login to show the pages 
+
+in the react , while using the react hook form for the validation we'll use the form type , 
+but in the react-native , there is no form insted that we using the cotroller from the react hook form to controll the text input 
+
+In react , it will automatically handles the onblur , onchange in the form while using the register
+controller is teh bridge b/w the react hook form and the component
