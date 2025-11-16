@@ -1,4 +1,7 @@
+import axios from "axios";
+
 const API_URL = "http://192.168.1.8:4000";
+
 export interface User {
   id?: number;
   name: string;
@@ -13,68 +16,65 @@ export interface ApiResponse {
   user?: User;
 }
 
+
 export async function signup(
   name: string,
   email: string,
   password: string
 ): Promise<ApiResponse> {
   try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
-
-    const existing = await fetch(`${API_URL}/users?email=${email}`, {
-      signal: controller.signal,
+    const { data: existingUsers } = await axios.get(`${API_URL}/users`, {
+      params: { email }
     });
-    const existingUsers: User[] = await existing.json();
-    clearTimeout(timeout);
 
     if (existingUsers.length > 0) {
       return { success: false, message: "Email already registered" };
     }
 
-    const response = await fetch(`${API_URL}/users`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
-      signal: controller.signal,
+    const { data: newUser } = await axios.post(`${API_URL}/users`, {
+      name,
+      email,
+      password,
     });
-    clearTimeout(timeout);
 
-    if (!response.ok) throw new Error("Signup failed");
-
-    const newUser: User = await response.json();
     const payload = { id: newUser.id, time: Date.now() };
     const token = btoa(JSON.stringify(payload));
 
     return { success: true, token, user: newUser };
   } catch (err) {
-    console.error("Signup error:", err);
-    return { success: false, message: "Network error — please try again" };
+    console.error(" Signup error:", err);
+    return { success: false, message: "Network error — try again" };
   }
 }
+
+
 
 export async function login(
   email: string,
   password: string
 ): Promise<ApiResponse> {
   try {
-    const res = await fetch(`${API_URL}/users?email=${email}&password=${password}`);
-    const data: User[] = await res.json();
+    const { data: users } = await axios.get(`${API_URL}/users`, {
+      params: { email, password },
+    });
 
-    if (data.length === 0) {
+    if (users.length === 0) {
       return { success: false, message: "Invalid email or password" };
     }
 
-    const user = data[0];
+    const user = users[0];
+
     const payload = { id: user.id, time: Date.now() };
     const token = btoa(JSON.stringify(payload));
 
     return { success: true, token, user };
   } catch (err) {
-    console.error("Login error:", err);
+    console.error(" Login error:", err);
     return { success: false, message: "Network error" };
   }
 }
+
+
 
 export async function verifyToken(token: string): Promise<ApiResponse> {
   try {
@@ -82,30 +82,21 @@ export async function verifyToken(token: string): Promise<ApiResponse> {
     const userId = decoded.id;
 
     const now = Date.now();
-    const sevenDays = 7 * 24 * 60 * 60 * 1000;
+    const expireTime = 7 * 24 * 60 * 60 * 1000;
 
-    if (now - decoded.time > sevenDays) {
+    if (now - decoded.time > expireTime) {
       return { success: false, message: "Token expired" };
     }
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
-
-    const res = await fetch(`${API_URL}/users/${userId}`, {
-      signal: controller.signal,
-    });
-    clearTimeout(timeout);
-
-    if (!res.ok) throw new Error("User not found");
-    const user: User = await res.json();
+    const { data: user } = await axios.get(`${API_URL}/users/${userId}`);
 
     if (!user || !user.id) {
-      return { success: false, message: "Invalid or expired token" };
+      return { success: false, message: "Invalid token" };
     }
 
     return { success: true, user };
   } catch (err) {
-    console.error("Token verification failed:", err);
-    return { success: false, message: "Token invalid or network error" };
+    console.error(" Token verification error:", err);
+    return { success: false, message: "Invalid token or server error" };
   }
 }

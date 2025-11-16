@@ -1,10 +1,10 @@
-import { View, Text, Pressable, Image } from "react-native";
 import { useAuth } from "@/src/hooks/useAuth";
-import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { router } from "expo-router";
+import { Image, Pressable, Text, View, ActivityIndicator } from "react-native";
 
 export default function Profile() {
-  const { user, logoutUser } = useAuth();
+  const { user, loading, logoutUser } = useAuth();
 
   const handleLogout = async () => {
     await logoutUser();
@@ -15,11 +15,20 @@ export default function Profile() {
     router.replace("/auth/login");
   };
 
+  // 🔥 Show loading screen while user is being fetched from AsyncStorage
+  if (loading) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator size="large" color="#3B82F6" />
+        <Text className="mt-3 text-gray-600">Loading...</Text>
+      </View>
+    );
+  }
+
   return (
     <View className="flex-1 bg-gray-50 px-6 py-10">
       {user ? (
         <View className="items-center">
-          {/* Profile Info Card */}
           <View className="bg-white p-6 rounded-2xl w-full mb-8 shadow-md flex-row items-center">
             <Image
               source={{
@@ -35,7 +44,6 @@ export default function Profile() {
             </View>
           </View>
 
-          {/* Account Options */}
           <View className="w-full bg-white rounded-2xl shadow-sm mb-6">
             {[
               { label: "My Orders", icon: "box-open" },
@@ -56,7 +64,6 @@ export default function Profile() {
                   <Text className="text-base text-gray-800">{item.label}</Text>
                 </View>
 
-                {/* Circular Arrow Icon */}
                 <View className="w-8 h-8 bg-gray-100 rounded-full items-center justify-center">
                   <FontAwesome5 name="chevron-right" size={14} color="#6B7280" />
                 </View>
@@ -64,7 +71,6 @@ export default function Profile() {
             ))}
           </View>
 
-          {/* Logout Button */}
           <Pressable
             onPress={handleLogout}
             className="bg-blue-500 w-2/3 py-3 rounded-full shadow-md"

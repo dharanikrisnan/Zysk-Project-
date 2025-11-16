@@ -6,6 +6,7 @@ import 'react-native-reanimated';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import Toast from 'react-native-toast-message';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 
@@ -15,24 +16,28 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
 
-          <Stack.Screen name="auth/login" options={{ headerShown: false }} />
-          <Stack.Screen name="auth/signup" options={{ headerShown: false }} />
-          <Stack.Screen name="(app)" options={{ headerShown: false }} />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
 
-          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Info' }} />
-          <Stack.Screen name="cart" options={{ presentation: 'modal', title: 'Shopping Cart' }} />
-          <Stack.Screen name="wishlist" options={{ presentation: 'modal', title: 'My Wishlist' }} />
+            <Stack.Screen name="auth/login" options={{ headerShown: false }} />
+            <Stack.Screen name="auth/signup" options={{ headerShown: false }} />
+            <Stack.Screen name="(app)" options={{ headerShown: false }} />
 
-        </Stack>
-        <Toast />
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </QueryClientProvider>
+            <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Info' }} />
+            <Stack.Screen name="cart" options={{ presentation: 'modal', title: 'Shopping Cart' }} />
+            <Stack.Screen name="wishlist" options={{ presentation: 'modal', title: 'My Wishlist' }} />
+
+          </Stack>
+          <Toast />
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
+
 
   );
 }

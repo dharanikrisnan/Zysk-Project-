@@ -26,3 +26,8 @@ but in the react-native , there is no form insted that we using the cotroller fr
 
 In react , it will automatically handles the onblur , onchange in the form while using the register
 controller is teh bridge b/w the react hook form and the component
+
+useSegment --> current URL path returns so that you can determine the which tab is active 
+
+we are extracting the these from the nativeEvent .     const { translationX, oldState, x } = e.nativeEvent;
+ negative = swipe left and positive= swipe right 
